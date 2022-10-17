@@ -1,6 +1,6 @@
 const { expect } = require("chai");
 const sinon = require("sinon");
-const { productsModel } = require("../../../src/models");
+const productsModel = require("../../../src/models/products.model");
 
 const connection = require('../../../src/models/connection');
 const { products } = require('./mocks/products.model.mock.js');
@@ -16,34 +16,17 @@ describe('testes de funcoes no product.model', function () {
       { id: 3, name: "Escudo do Capitão América" },
     ];
 
-    sinon.stub(connection, 'execute').resolves(products);
-    // const productId = 3;
-    console.log(products);
+    sinon.stub(connection, 'execute').resolves([products]);
     const result = await productsModel.findAll();
-    console.log('result', result);
     expect(result).to.be.deep.equal(products);
     
   });
 
   it("verifica se a funcao retorna o product id buscado", async function () {
 
-    sinon.stub(connection, "execute").resolves(products[2]);
+    sinon.stub(connection, "execute").resolves([[products[2]]]);
     const productId = 3;
-    // console.log(products[2]);
     const result = await productsModel.findById(productId);
     expect(result).to.be.deep.equal(products[2]);
   });
 });
-
-  // it("Recuperando a lista de pessoas passageiras", async function () {
-  //   sinon.stub(connection, "execute").resolves([passengers]);
-  //   const result = await passengerModel.findAll();
-  //   expect(result).to.be.deep.equal(passengers);
-  // });
-
-  // it("Recuperando uma pessoa passageira a partir do seu id", async function () {
-  //   sinon.stub(connection, "execute").resolves([[passengers[0]]]);
-  //   const result = await passengerModel.findById(1);
-  //   expect(result).to.be.deep.equal(passengers[0]);
-  // });
-
