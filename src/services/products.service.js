@@ -5,15 +5,16 @@ const findAll = async () => {
   return { type: null, message: products };
 };
 
-// const findById = async (passengerId) => {
-//   const error = validateId(passengerId);
-//   if (error.type) return error;
-
-//   const passenger = await passengerModel.findById(passengerId);
-//   if (passenger) return { type: null, message: passenger };
-//   return { type: 'PASSENGER_NOT_FOUND', message: 'Passenger not found' };
-// };
+const findById = async (id) => {
+  // console.log(id);
+  const product = await productsModel.findById(id);
+  if (!product) {
+    return { type: 'notFound', message: 'Product not found' };
+  }
+  return { type: null, message: product };
+};
 
 module.exports = {
   findAll,
+  findById,
 };
