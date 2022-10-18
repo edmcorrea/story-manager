@@ -3,7 +3,6 @@ const snakeize = require('snakeize');
 const connection = require('./connection');
 
 const findAll = async () => {
-  console.log('oi');
   const [result] = await connection.execute(
     'SELECT * FROM StoreManager.products ORDER BY id',
   );
