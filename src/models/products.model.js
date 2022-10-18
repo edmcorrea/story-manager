@@ -21,25 +21,27 @@ const findById = async (productId) => {
   }
 };
 
-const addProduct = async (product) => {
-  const columns = Object.keys(snakeize(product))
-    .map((_elem) => '?')
+const insert = async (name) => {
+  console.log('product', name);
+  const columns = Object.keys(snakeize(name))
+    .map((key) => `${key}`)
     .join(', ');
-  
-  const placeholders = Object.keys(product)
+
+  const placeholders = Object.keys(name)
     .map((_key) => '?')
     .join(', ');
-  
-  const [{ insertProduct }] = await connection.execute(
-    `INSERT INTO passengers (${columns}) VALUE (${placeholders})`,
-    [...Object.values(product)],
-  );
 
-  return insertProduct;
+  const [{ insertId }] = await connection.execute(
+    `INSERT INTO StoreManager.products (${columns}) VALUE (${placeholders})`,
+    [...Object.values(name)],
+  );
+  // console.log(insertId);
+
+  return insertId;
 };
 
 module.exports = {
   findAll,
   findById,
-  addProduct,
+  insert,
 };
