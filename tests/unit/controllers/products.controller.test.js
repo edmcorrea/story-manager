@@ -47,4 +47,21 @@ describe('testes de funcoes no product.controller', function () {
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(productsList[0]);
   });
+
+    it("verifica se retorna um unico product atraves do id", async function () {
+      const res = {};
+      const req = { params: { id: 1 } };
+      const productsList = [products];
+
+      res.status = sinon.stub().returns(res);
+      res.json = sinon.stub().returns();
+      sinon
+        .stub(productsService, "findById")
+        .resolves({ type: null, message: productsList[0] });
+
+      await productsController.getProductById(req, res);
+
+      expect(res.status).to.have.been.calledWith(200);
+      expect(res.json).to.have.been.calledWith(productsList[0]);
+    });
 });

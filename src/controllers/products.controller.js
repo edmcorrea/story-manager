@@ -20,10 +20,12 @@ const getProductById = async (req, res) => {
 
 const createNewProduct = async (req, res) => {
   const { name } = req.body;
+  const { type, message } = await productService.createProduct(name);
 
-  // const { type, message } = await productService.createProduct(product);
-  const { message } = await productService.createProduct(name);
-  // if(type) return res.status(errorMap.mapError(type)).json(message);
+  if (type === 'NAME_NOT_FOUND') return res.status(400).json({ message });
+
+  if (type === 'NAME_NOT_LENGTH') return res.status(422).json({ message });
+
   res.status(201).json(message);
 };
 

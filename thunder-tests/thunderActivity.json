@@ -8,7 +8,7 @@
     "method": "GET",
     "sortNum": 0,
     "created": "2022-10-17T19:26:52.317Z",
-    "modified": "2022-10-17T21:07:54.488Z",
+    "modified": "2022-10-18T18:01:05.589Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -50,12 +50,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2022-10-17T19:59:42.781Z",
-    "modified": "2022-10-18T04:15:39.699Z",
+    "modified": "2022-10-18T21:27:55.677Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id\": 4,\n  \"name\": \"ProdutoX\"\n}",
+      "raw": "{\n  \"id\": 4\n}",
       "form": []
     },
     "tests": []

@@ -15,13 +15,11 @@ const findById = async (id) => {
 };
 
 const createProduct = async (name) => {
-  // console.log(product);
-  // const error = validateNewProduct(product);
-  // if (error.type) return error;
+  const error = validateNewProduct(name);
+  if (error.type) return error;
 
   const newProductId = await productsModel.insert({ name });
   const newProduct = await productsModel.findById(newProductId);
-  console.log(newProduct);
 
   return { type: null, message: newProduct };
 };

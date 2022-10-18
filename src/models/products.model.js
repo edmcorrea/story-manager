@@ -22,7 +22,6 @@ const findById = async (productId) => {
 };
 
 const insert = async (name) => {
-  console.log('product', name);
   const columns = Object.keys(snakeize(name))
     .map((key) => `${key}`)
     .join(', ');
@@ -35,7 +34,6 @@ const insert = async (name) => {
     `INSERT INTO StoreManager.products (${columns}) VALUE (${placeholders})`,
     [...Object.values(name)],
   );
-  // console.log(insertId);
 
   return insertId;
 };
