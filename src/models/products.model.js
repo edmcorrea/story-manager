@@ -38,8 +38,20 @@ const insert = async (name) => {
   return insertId;
 };
 
+const updateById = async (id, dataToUpdate) => {
+  const formattedColumns = Object.keys(snakeize(dataToUpdate))
+    .map((key) => `${key} = ?`)
+    .join(', ');
+
+  return connection.execute(
+    `UPDATE StoreManager.products SET ${formattedColumns} WHERE id = ?`,
+    [...Object.values(dataToUpdate), id],
+  );
+};
+
 module.exports = {
   findAll,
   findById,
   insert,
+  updateById,
 };
