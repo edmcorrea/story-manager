@@ -49,9 +49,17 @@ const changeName = async (req, res) => {
   res.status(200).json(message);
 };
 
+const deleteProduct = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await productService.deleteById(id);
+  if (type === 'notFound') return res.status(404).json({ message });
+  res.status(204).end();
+};
+
 module.exports = {
   listProducts,
   getProductById,
   createNewProduct,
   changeName,
+  deleteProduct,
 };
