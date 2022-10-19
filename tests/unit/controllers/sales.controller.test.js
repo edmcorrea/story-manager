@@ -8,7 +8,7 @@ chai.use(sinonChai);
 const salesService = require("../../../src/services/sales.service");
 const salesController = require("../../../src/controllers/sales.controller");
 
-const { sales } = require("./mocks/sales.controller.mock.js");
+const { sales, salesIdMock } = require("./mocks/sales.controller.mock.js");
 
 describe("testes de funcoes no sales.controller", function () {
   afterEach(sinon.restore);
@@ -30,22 +30,22 @@ describe("testes de funcoes no sales.controller", function () {
     expect(res.json).to.have.been.calledWith(salesList);
   });
 
-  // it("verifica se retorna um unico product atraves do id", async function () {
-  //   const res = {};
-  //   const req = { params: { id: 1 } };
-  //   const productsList = [products];
+  it("verifica se retorna  sales atraves do id", async function () {
+    const res = {};
+    const req = { params: { id: 1 } };
+    const salesList = [salesIdMock];
 
-  //   res.status = sinon.stub().returns(res);
-  //   res.json = sinon.stub().returns();
-  //   sinon
-  //     .stub(productsService, "findById")
-  //     .resolves({ type: null, message: productsList[0] });
+    res.status = sinon.stub().returns(res);
+    res.json = sinon.stub().returns();
+    sinon
+      .stub(salesService, "findById")
+      .resolves({ type: null, message: salesList });
 
-  //   await productsController.getProductById(req, res);
+    await salesController.getSaleById(req, res);
 
-  //   expect(res.status).to.have.been.calledWith(200);
-  //   expect(res.json).to.have.been.calledWith(productsList[0]);
-  // });
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(salesList);
+  });
 
   // it("verifica se retorna um unico product atraves do id", async function () {
   //   const res = {};
