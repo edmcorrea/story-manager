@@ -14,18 +14,21 @@ const findById = async (id) => {
   return { type: null, message: sale };
 };
 
-// const createProduct = async (name) => {
-//   const error = validateNewProduct(name);
-//   if (error.type) return error;
+const createSale = async (sales) => {
+  // const sale = sales.forEach{(sale) => 
 
-//   const newProductId = await salesModel.insert({ name });
-//   const newProduct = await salesModel.findById(newProductId);
+  // };
+  // const error = validateNewProduct(name);
+  // if (error.type) return error;
 
-//   return { type: null, message: newProduct };
-// };
+  // const newProductId = await salesModel.insert({  });
+  // const newProduct = await salesModel.findById(newProductId);
+
+  return { type: null, message: sales };
+};
 
 module.exports = {
   findAll,
   findById,
-  // createProduct,
+  createSale,
 };

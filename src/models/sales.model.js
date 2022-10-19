@@ -24,14 +24,16 @@ const findById = async (saleId) => {
       WHERE id = ?;`,
       [saleId],
     );
-    console.log('sale', sale);
     return camelize(sale);
   } catch (error) {
     return error;
   }
 };
 
+const insert = async () => 'oi';
+
 module.exports = {
   findAll,
   findById,
+  insert,
 };

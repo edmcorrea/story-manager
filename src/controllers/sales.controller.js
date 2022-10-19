@@ -18,19 +18,19 @@ const getSaleById = async (req, res) => {
   res.status(200).json(message);
 };
 
-// const createNewProduct = async (req, res) => {
-//   const { name } = req.body;
-//   const { type, message } = await productService.createProduct(name);
+const createNewSale = async (req, res) => {
+  const sales = req.body;
+  const { message } = await salesService.createSale(sales);
 
-//   if (type === 'NAME_NOT_FOUND') return res.status(400).json({ message });
+  // if (type === 'NAME_NOT_FOUND') return res.status(400).json({ message });
 
-//   if (type === 'NAME_NOT_LENGTH') return res.status(422).json({ message });
+  // if (type === 'NAME_NOT_LENGTH') return res.status(422).json({ message });
 
-//   res.status(201).json(message);
-// };
+  res.status(201).json(message);
+};
 
 module.exports = {
   listSales,
   getSaleById,
-  // createNewProduct,
+  createNewSale,
 };
