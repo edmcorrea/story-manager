@@ -1,5 +1,5 @@
 const { salesModel } = require('../models');
-const { validateNewSale } = require('./validations/validationsInputValues');
+const { validateNewSale, validateId } = require('./validations/validationsInputValues');
 // const { validateNewProduct } = require('./validations/validationsInputValues');
 
 const findAll = async () => {
@@ -29,8 +29,18 @@ const createSale = async (sales) => {
   return { type: null, message: { id, itemsSold: sales } };
 };
 
+const deleteSale = async (id) => {
+  const error = validateId(id);
+  if (error.type) return error;
+
+  const affectedRows = await salesModel.remove(id);
+  if (affectedRows > 0) return { type: null, message: '' };
+  return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+};
+
 module.exports = {
   findAll,
   findById,
   createSale,
+  deleteSale,
 };
