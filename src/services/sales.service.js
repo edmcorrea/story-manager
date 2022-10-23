@@ -1,4 +1,5 @@
 const { salesModel } = require('../models');
+const { validateNewSale } = require('./validations/validationsInputValues');
 // const { validateNewProduct } = require('./validations/validationsInputValues');
 
 const findAll = async () => {
@@ -15,16 +16,17 @@ const findById = async (id) => {
 };
 
 const createSale = async (sales) => {
-  // const sale = sales.forEach{(sale) => 
+  const error = await validateNewSale(sales);
+  if (error.type) return error;
 
-  // };
-  // const error = validateNewProduct(name);
-  // if (error.type) return error;
+  const id = await salesModel.insertNewId();
 
-  // const newProductId = await salesModel.insert({  });
-  // const newProduct = await salesModel.findById(newProductId);
+  const insertSales = sales.map(async (sale) => 
+    salesModel.insertSale(id, sale));
 
-  return { type: null, message: sales };
+  await Promise.all(insertSales);
+
+  return { type: null, message: { id, itemsSold: sales } };
 };
 
 module.exports = {

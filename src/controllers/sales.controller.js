@@ -20,11 +20,11 @@ const getSaleById = async (req, res) => {
 
 const createNewSale = async (req, res) => {
   const sales = req.body;
-  const { message } = await salesService.createSale(sales);
+  const { type, message } = await salesService.createSale(sales);
 
-  // if (type === 'NAME_NOT_FOUND') return res.status(400).json({ message });
+  if (type === 'PRODUCT_NOT_FOUND') return res.status(404).json({ message });
 
-  // if (type === 'NAME_NOT_LENGTH') return res.status(422).json({ message });
+  if (type === 'INVALID_VALUE') return res.status(422).json({ message });
 
   res.status(201).json(message);
 };

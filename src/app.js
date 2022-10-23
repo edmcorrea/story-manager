@@ -1,5 +1,6 @@
 const express = require('express');
 const { productsController, salesController } = require('./controllers');
+const validateSaleInput = require('./middlewares/validateSaleInput');
 
 const app = express();
 
@@ -19,6 +20,8 @@ app.post('/products', productsController.createNewProduct);
 app.get('/sales', salesController.listSales);
 
 app.get('/sales/:id', salesController.getSaleById);
+
+app.post('/sales', validateSaleInput, salesController.createNewSale);
 
 app.put('/products/:id', productsController.changeName);
 
