@@ -33,11 +33,24 @@ const deleteSale = async (req, res) => {
   const { id } = req.params;
 
   const { type, message } = await salesService.deleteSale(id);
-  console.log(type, message);
   if (type === 'INVALID_VALUE') return res.status(422).json({ message });
   if (type === 'SALE_NOT_FOUND') return res.status(404).json({ message });
 
   res.status(204).end();
+};
+
+const updateSale = async (req, res) => {
+  const { id } = req.params;
+  const itemsUpdated = req.body;
+  const { type, message } = await salesService.updateById(id, itemsUpdated);
+
+  if (type === 'PRODUCT_NOT_FOUND' || type === 'SALE_NOT_FOUND') {
+    return res.status(404).json({ message });
+  }
+
+  if (type === 'INVALID_VALUE') return res.status(422).json({ message });
+
+  res.status(200).json(message);
 };
 
 module.exports = {
@@ -45,4 +58,5 @@ module.exports = {
   getSaleById,
   createNewSale,
   deleteSale,
+  updateSale,
 };

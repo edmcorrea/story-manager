@@ -36,14 +36,11 @@ const changeName = async (req, res) => {
     id,
     name,
   });
-  // const { message } = await productService.updateById({
-  //   id,
-  //   name,
-  // });
-  if (type === 'notFound') return res.status(404).json({ message });
-
+  
   if (type === 'NAME_NOT_FOUND') return res.status(400).json({ message });
-
+  
+  if (type === 'notFound') return res.status(404).json({ message });
+  
   if (type === 'NAME_NOT_LENGTH') return res.status(422).json({ message });
 
   res.status(200).json(message);

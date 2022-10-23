@@ -38,9 +38,25 @@ const deleteSale = async (id) => {
   return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
 };
 
+const updateById = async (id, itemsUpdated) => {
+  const findId = await salesModel.findById(id);
+  if (!findId.length) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+
+  const error = await validateNewSale(itemsUpdated);
+  if (error.type) return error;
+
+  const updated = await itemsUpdated
+    .map((sale) => salesModel.updateById(id, sale));
+
+  await Promise.all(updated);
+  
+  return { type: null, message: { saleId: id, itemsUpdated } };
+};
+
 module.exports = {
   findAll,
   findById,
   createSale,
   deleteSale,
+  updateById,
 };

@@ -4,16 +4,16 @@
     "colId": "history",
     "containerId": "",
     "name": "http://localhost:3000/products",
-    "url": "http://localhost:3000/sales/1",
-    "method": "DELETE",
+    "url": "http://localhost:3000/sales/10",
+    "method": "PUT",
     "sortNum": 0,
     "created": "2022-10-17T19:26:52.317Z",
-    "modified": "2022-10-23T20:48:57.659Z",
+    "modified": "2022-10-23T22:16:41.844Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "[\n  {\n    \"productId\": 20,\n    \"quantity\": 1\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 5\n  }\n]",
+      "raw": "[\n  {\n    \"productId\": 1,\n    \"quantity\": 10\n  },\n  {\n    \"productId\": 2,\n    \"quantity\": 50\n  }\n]",
       "form": []
     },
     "tests": []
