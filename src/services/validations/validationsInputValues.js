@@ -1,5 +1,5 @@
 const { productsModel } = require('../../models');
-const { productSchema, addSale } = require('./schemas');
+const { productSchema } = require('./schemas');
 
 const validateNewProduct = (name) => {
   const { error } = productSchema.validate(name);
