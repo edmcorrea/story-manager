@@ -53,7 +53,15 @@ const deleteById = async (id) => connection.execute(
   `DELETE FROM StoreManager.products
   WHERE id = ?`,
     [id],
+);
+  
+const findBySearch = async (q) => {
+  const [results] = await connection.execute(
+    'SELECT * FROM StoreManager.products',
   );
+  const filterResult = await results.filter(({ name }) => name.includes(q));
+  return filterResult;
+};
 
 module.exports = {
   findAll,
@@ -61,4 +69,5 @@ module.exports = {
   insert,
   updateById,
   deleteById,
+  findBySearch,
 };
