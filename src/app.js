@@ -1,37 +1,15 @@
 const express = require('express');
-const { productsController, salesController } = require('./controllers');
-const validateSaleInput = require('./middlewares/validateSaleInput');
+const routes = require('./routes');
 
 const app = express();
 
 app.use(express.json());
 
+app.use(routes);
 // não remova esse endpoint, é para o avaliador funcionar
 app.get('/', (_request, response) => {
   response.send();
 });
-
-app.get('/products', productsController.listProducts);
-
-app.get('/products/search', productsController.queryProduct);
-
-app.get('/products/:id', productsController.getProductById);
-
-app.post('/products', productsController.createNewProduct);
-
-app.get('/sales', salesController.listSales);
-
-app.get('/sales/:id', salesController.getSaleById);
-
-app.post('/sales', validateSaleInput, salesController.createNewSale);
-
-app.put('/products/:id', productsController.changeName);
-
-app.delete('/products/:id', productsController.deleteProduct);
-
-app.delete('/sales/:id', salesController.deleteSale);
-
-app.put('/sales/:id', validateSaleInput, salesController.updateSale);
 
 // não remova essa exportação, é para o avaliador funcionar
 // você pode registrar suas rotas normalmente, como o exemplo acima
